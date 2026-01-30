@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Punch In / Out{% endblock %}
+{% block content %}
+<section class="page-head">
+  <h1>Punch In / Out</h1>
+  <p>Look at the camera and blink once when prompted, then choose Punch In or Punch Out.</p>
+</section>
+<div class="attend-layout">
+  <div class="camera-card">
+    <video id="attendCamera" autoplay playsinline muted></video>
+    <canvas id="attendSnapshot" class="hidden"></canvas>
+    <p id="attendStatus" class="status-text">Starting camera…</p>
+  </div>
+  <div class="actions-card">
+    <p id="identifyResult" class="identify-result"></p>
+    <div class="punch-buttons">
+      <button type="button" id="punchInBtn" class="btn btn-primary" disabled>Punch In</button>
+      <button type="button" id="punchOutBtn" class="btn btn-secondary" disabled>Punch Out</button>
+    </div>
+    <p id="punchMessage" class="message hidden"></p>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='camera.js') }}"></script>
+<script src="{{ url_for('static', filename='attend.js') }}"></script>
+{% endblock %}

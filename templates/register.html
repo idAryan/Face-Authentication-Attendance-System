@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Register Face{% endblock %}
+{% block content %}
+<section class="page-head">
+  <h1>Register Face</h1>
+  <p>Capture a clear photo of your face. Good lighting and a neutral expression work best.</p>
+</section>
+<div class="register-layout">
+  <div class="register-form-card">
+    <video id="camera" autoplay playsinline muted></video>
+    <canvas id="snapshot" class="hidden"></canvas>
+    <div id="preview" class="preview-area hidden"></div>
+    <form id="registerForm" class="form">
+      <label for="user_id">User ID</label>
+      <input type="text" id="user_id" name="user_id" required placeholder="e.g. emp001">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required placeholder="e.g. Jane Doe">
+      <div class="form-actions">
+        <button type="button" id="captureBtn" class="btn btn-primary">Capture Photo</button>
+        <button type="submit" id="submitBtn" class="btn btn-secondary" disabled>Register</button>
+      </div>
+    </form>
+    <p id="registerMessage" class="message hidden"></p>
+  </div>
+  <div class="registered-list">
+    <h2>Registered Users</h2>
+    <ul id="userList">
+      {% for u in users %}
+      <li data-user-id="{{ u.user_id }}">{{ u.name }} <span class="uid">({{ u.user_id }})</span>
+        <button type="button" class="btn-small delete-user" data-user-id="{{ u.user_id }}">Remove</button>
+      </li>
+      {% endfor %}
+    </ul>
+    <p class="muted" id="noUsers" {% if users %}style="display:none"{% endif %}>No users registered yet.</p>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='camera.js') }}"></script>
+<script src="{{ url_for('static', filename='register.js') }}"></script>
+{% endblock %}

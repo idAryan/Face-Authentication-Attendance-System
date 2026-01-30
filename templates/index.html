@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>Face Authentication Attendance</h1>
+  <p class="tagline">Register your face once, then punch in and out with a single look.</p>
+  <div class="hero-actions">
+    <a href="{{ url_for('register_page') }}" class="btn btn-primary">Register Face</a>
+    <a href="{{ url_for('attend_page') }}" class="btn btn-secondary">Punch In / Out</a>
+    <a href="{{ url_for('attendance_page') }}" class="btn btn-outline">View Attendance</a>
+  </div>
+</section>
+<section class="features">
+  <div class="feature-card">
+    <h3>Register</h3>
+    <p>Add your face with a clear photo. One face per user.</p>
+  </div>
+  <div class="feature-card">
+    <h3>Identify</h3>
+    <p>Real-time camera identification with basic spoof prevention (lighting + blink).</p>
+  </div>
+  <div class="feature-card">
+    <h3>Punch In / Out</h3>
+    <p>Mark attendance by looking at the camera and confirming with a blink.</p>
+  </div>
+</section>
+{% endblock %}

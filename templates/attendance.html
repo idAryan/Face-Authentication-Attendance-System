@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Attendance{% endblock %}
+{% block content %}
+<section class="page-head">
+  <h1>Attendance Records</h1>
+  <p>All punch-in and punch-out entries.</p>
+</section>
+<div class="attendance-layout">
+  <section class="today-summary">
+    <h2>Today’s Summary</h2>
+    <table class="table">
+      <thead>
+        <tr><th>User ID</th><th>Name</th><th>Last Punch In</th><th>Last Punch Out</th></tr>
+      </thead>
+      <tbody>
+        {% for row in summary %}
+        <tr>
+          <td>{{ row.user_id }}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.last_punch_in or '—' }}</td>
+          <td>{{ row.last_punch_out or '—' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% if not summary %}
+    <p class="muted">No entries for today.</p>
+    {% endif %}
+  </section>
+  <section class="all-records">
+    <h2>All Records</h2>
+    <table class="table">
+      <thead>
+        <tr><th>#</th><th>User ID</th><th>Name</th><th>Action</th><th>Timestamp</th></tr>
+      </thead>
+      <tbody>
+        {% for r in records %}
+        <tr>
+          <td>{{ r.id }}</td>
+          <td>{{ r.user_id }}</td>
+          <td>{{ r.name }}</td>
+          <td><span class="badge badge-{{ r.action }}">{{ r.action }}</span></td>
+          <td>{{ r.timestamp }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% if not records %}
+    <p class="muted">No records yet.</p>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}
