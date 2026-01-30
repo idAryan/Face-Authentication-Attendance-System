@@ -1,7 +1,9 @@
 # Face Authentication Attendance System
 
 A working face authentication system for attendance: register a user's face, identify the face from a real camera, and mark **punch-in** and **punch-out**.
-![Face Authentication Demo](assets\gifgithub.gif)
+![Face Authentication Demo](assets/gifgithub.gif)
+
+
 
 ## Features
 
